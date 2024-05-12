@@ -156,9 +156,11 @@
                     showConfirmButton: false,
                     timer: 1500
                 })
+                this.msgErr = [];
                 this.isSaving = false
                 this.showTable = true;
                 this.showForm = false;
+                
                 this.data.push(this.project)
                 return response
                 })
