@@ -76,7 +76,8 @@
                   </button>
               </form>
               <div v-if="showTable">
-                <table class="table table-bordered">
+                <div class="table-responsive">
+                <table class="table table-demo table-bordered">
                     <thead>
                         <th> Name </th>
                         <th> Email </th>
@@ -96,6 +97,7 @@
                         </tr>
                     </tbody>
                 </table>
+                 </div>
                 <button 
                       @click="back()"
                       type="button"
@@ -251,3 +253,73 @@
     },
   };
   </script>
+
+  <style>
+  $breakpoint: 480px;
+#table-demo {
+  margin: 20px 0;
+  table{
+    min-width: 300px;
+    width: 100%;
+    height: fit-content;
+    overflow-y: scroll;
+    border-collapse: collapse;
+    border: 1px solid #000;
+    tr {
+      td {
+        border: 1px solid #000;
+        padding: 10px;
+      }
+    }
+    .bold {
+      border-right: none;
+      border-left: none;
+      background: #ddd;
+      border-bottom: 1px solid #c2c2c2;
+      border: none;
+      td {
+        border: none;
+        background: #000;
+        color: #fff;
+        border: none;
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+  }
+  .with-header {
+    tr:first-of-type {
+      td {
+        border: none;
+      }
+    }
+    @media (max-width: $breakpoint) {
+      tr:first-of-type {
+        display: none;
+      }
+      tr {
+        border: 1px solid #000;
+        td {
+          display: block;
+          border: none;
+          &:first-child {
+            padding-top: .5em;
+          }
+          &:last-child {
+            padding-bottom: .5em;
+          }
+          &:before {
+            content: attr(data-th)": ";
+            font-weight: bold;
+            display: inline-block;
+            @media (min-width: $breakpoint) {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+  </style>
