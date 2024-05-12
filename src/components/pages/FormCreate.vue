@@ -72,7 +72,7 @@
                       :disabled="isSaving"
                       type="button"
                       class="btn btn-outline-primary mt-3">
-                      Save
+                      {{btnName}}
                   </button>
               </form>
               <div v-if="showTable">
@@ -125,6 +125,7 @@
         showErr: false,
         showTable: false,
         showForm: true,
+        btnName: "Save",
         msgErr:[],
         data: [],
         project: {
@@ -147,7 +148,7 @@
     },
     methods: {
         save() {
-
+          this.btnName = 'Loading ...'
           if(this.validation()){
             this.isSaving = true
             axios.post('/form', this.project)
@@ -158,6 +159,7 @@
                     showConfirmButton: false,
                     timer: 1500
                 })
+                this.btnName = 'Save'
                 this.msgErr = [];
                 this.isSaving = false
                 this.showTable = true;
@@ -167,7 +169,7 @@
                 return response
                 })
                 .catch(error => {
-                console.log(error.response.data)
+                this.btnName = 'Save'
                 this.msgErr = error.response.data.message
                 this.isSaving = false
                 this.showErr = true
